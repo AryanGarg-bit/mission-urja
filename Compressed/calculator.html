@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Calculator</title>
+
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("kk.jpg") no-repeat center center/cover;
+            height: 100vh;
+        }
+        .calculator-container {
+            background: rgba(255, 255, 255, 0.8); /* Slight transparency for better readability */
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: transparent; /* Makes table background transparent */
+        }
+        td {
+            padding: 10px;
+            border: none; /* Removes borders */
+        }
+        .calculator-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-bottom: 2px solid #000;
+            background: transparent;
+            outline: none;
+            color: black;
+        }
+        .calculator-container button {
+            width: 100%;
+            padding: 10px;
+            background: lightblue;
+            border: none;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: block;
+        }
+        .calculator-container button:hover {
+            background: #87CEFA;
+        }
+        .back-home {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            border: none;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+        .back-home:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <div class="logo"><a href="#">Mission Urja</a></div>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Energy</a>
+          <ul class="dropdown-content">
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="tracker.html">Tracker</a></li>
+            <li><a href="tips.html">Tips</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">CO2</a>
+          <ul class="dropdown-content">
+            <li><a href="CO2calculator.html">Calculator</a></li>
+            <li><a href="CO2tracker.html">Tracker</a></li>
+            <li><a href="CO2tips.html">Tips</a></li>
+          </ul>
+        </li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li class="dropdown">
+          <a href="#">Article</a>
+          <ul class="dropdown-content">
+            <li><a href="energyarticle.html"> Energy Article</a></li>
+            <li><a href="co2article.html">CO2 Article</a></li>
+          </ul>
+        </li>
+        <li><a href="registeration.html">Sign up</a></li>
+        <div class="cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+      </ul>
+      <div class="media-icons">
+        <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+    <div class="calculator-container">
+        <h2>Energy Calculator</h2>
+        <table>
+            <tr>
+                <td>Appliance Wattage (W):</td>
+                <td><input type="number" id="power" placeholder="Enter wattage"></td>
+            </tr>
+            <tr>
+                <td>Hours Used per Day:</td>
+                <td><input type="number" id="hours" placeholder="Enter hours"></td>
+            </tr>
+            <tr>
+                <td>Days Used per Month:</td>
+                <td><input type="number" id="days" placeholder="Enter days"></td>
+            </tr>
+        </table>
+        <button onclick="calculateEnergy()">Calculate</button>
+        <p id="result"></p>
+        <a href="index.html" class="back-home">Back to Home</a>
+    </div>
+    
+    <script>
+        function calculateEnergy() {
+            let power = document.getElementById("power").value;
+            let hours = document.getElementById("hours").value;
+            let days = document.getElementById("days").value;
+            if (power && hours && days) {
+                let energy = (power * hours * days) / 1000; // Convert to kWh
+                document.getElementById("result").innerText = "Energy Consumption: " + energy.toFixed(2) + " kWh per month";
+            } else {
+                document.getElementById("result").innerText = "Please enter valid values.";
+            }
+        }
+    </script>
+</body>
+</html>

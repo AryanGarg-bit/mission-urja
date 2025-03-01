@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Quicksand", sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #111;
+      background: url('image11.jpg') no-repeat center center fixed;
+      background-size: cover;
+      width: 100%;
+      overflow: hidden;
+    }
+    .ring {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ring i {
+      position: absolute;
+      inset: 0;
+      border: 2px solid #fff;
+      transition: 0.5s;
+    }
+    .ring i:nth-child(1) {
+      border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+      animation: animate 6s linear infinite;
+    }
+    .ring i:nth-child(2) {
+      border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+      animation: animate 4s linear infinite;
+    }
+    .ring i:nth-child(3) {
+      border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+      animation: animate2 10s linear infinite;
+    }
+    .ring:hover i {
+      border: 6px solid var(--clr);
+      filter: drop-shadow(0 0 20px var(--clr));
+    }
+    @keyframes animate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes animate2 {
+      0% {
+        transform: rotate(360deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+    .Login {
+      position: absolute;
+      width: 300px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .Login h2 {
+      font-size: 2em;
+      color: #fff;
+    }
+    .Login .inputBx {
+      position: relative;
+      width: 100%;
+    }
+    .Login .inputBx input {
+      position: relative;
+      width: 100%;
+      padding: 12px 20px;
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 40px;
+      font-size: 1.2em;
+      color: #fff;
+      box-shadow: none;
+      outline: none;
+    }
+    .Login .inputBx input[type="button"] {
+      width: 100%;
+      background: #0078ff;
+      background: linear-gradient(45deg, #ff357a, #fff172);
+      border: none;
+      cursor: pointer;
+    }
+    .Login .inputBx input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .Login .links {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .Login .links a {
+      color: #fff;
+      text-decoration: none;
+    }
+    #logout {
+      display: none;
+      padding: 10px;
+      background: #ff357a;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="ring">
+    <i style="--clr:#fff;"></i>
+    <i style="--clr:#fff;"></i>
+    <i style="--clr:#fff;"></i>
+    <div class="Login">
+      <h2>Login</h2>
+      <div class="inputBx">
+        <input type="text" placeholder="email" id="login_email">
+      </div>
+      <div class="inputBx">
+        <input type="password" placeholder="password" id="login_password">
+      </div>
+      <div class="inputBx">
+        <input type="button" value="Login" id="login_button">
+      </div>
+      <div class="links">
+        <a href="#">Forgot Password</a>
+        <a href="registeration.html">Sign up</a>
+      </div>
+      <div id="logout" onclick="logout()">Logout</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBy2ka0-vgvann5DYP1BwUgusYWN1VIrIQ",
+      authDomain: "mission-urja-a0560.firebaseapp.com",
+      projectId: "mission-urja-a0560",
+      storageBucket: "mission-urja-a0560.firebasestorage.app",
+      messagingSenderId: "469939971054",
+      appId: "1:469939971054:web:015b0a97c2732225b1a4ff",
+      measurementId: "G-Q52PDQ2CBZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    // Login functionality
+    document.getElementById("login_button").addEventListener("click", function() {
+      const email = document.getElementById("login_email").value;
+      const password = document.getElementById("login_password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          alert(user.email + " Login successfully!!!");
+          document.getElementById('logout').style.display = 'block';
+        })
+        .catch((error) => {
+          console.log(error.message);
+          alert(error.message);
+        });
+    });
+
+    // Logout functionality
+    function logout() {
+      signOut(auth).then(() => {
+        console.log('Sign-out successful.');
+        alert('Sign-out successful.');
+        document.getElementById('logout').style.display = 'none';
+      }).catch((error) => {
+        console.log('An error happened.');
+      });
+    }
+  </script>
+</body>
+</html>

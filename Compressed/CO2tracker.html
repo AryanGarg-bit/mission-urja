@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CO₂ Emission Tracker - Mission Urja</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("https://advertisingweek.com/wp-content/uploads/2023/01/carbon-neutral-and-esg-concepts-carbon-emission-clean-energy-globe-balancing-between-a-green.jpg_s1024x1024wisk20cUZjMAOHpGtWFVw7D3JgEpa2RWgw4gL0OQFSV2AkPD1c.jpg") no-repeat;
+  background-size: cover;
+            height: 100vh;
+            color: white;
+            flex-direction: column;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px gray;
+            text-align: center;
+            color: black;
+            width: 50%;
+            margin-top: 50px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        button {
+            background: green;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        canvas {
+            background: white;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        #evaluation {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo"><a href="#">Mission Urja</a></div>
+          <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Energy</a>
+              <ul class="dropdown-content">
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">CO2</a>
+              <ul class="dropdown-content">
+                <li><a href="CO2calculator.html">Calculator</a></li>
+                <li><a href="CO2tracker.html">Tracker</a></li>
+                <li><a href="CO2tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li class="dropdown">
+                <a href="#">Article</a>
+                <ul class="dropdown-content">
+                  <li><a href="energyarticle.html"> Energy Article</a></li>
+                  <li><a href="co2article.html">CO2 Article</a></li>
+                </ul>
+              </li>
+            <li><a href="registeration.html">Sign up</a></li>
+            <div class="cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+          </ul>
+          <div class="media-icons">
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    <div class="container">
+        <h2>CO₂ Emission Tracker</h2>
+        <p>Calculate your CO₂ emissions in kg</p>
+        <form id="emissionForm">
+            <input type="number" id="energyUsed" placeholder="Enter energy consumption in kWh" required>
+            <button type="submit">Calculate CO₂ Emission</button>
+        </form>
+        <h3 id="result"></h3>
+        <h3 id="evaluation"></h3>
+        <canvas id="co2Chart" width="400" height="200"></canvas>
+    </div>
+
+    <script>
+        let co2Data = [];
+        let labels = [];
+        let co2Chart;
+
+        function createChart() {
+            const ctx = document.getElementById("co2Chart").getContext("2d");
+            co2Chart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "CO₂ Emission (kg)",
+                        data: co2Data,
+                        backgroundColor: "green"
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function evaluateEmission(co2Emission) {
+            if (co2Emission < 50) {
+                return "Your CO₂ emission is GOOD! Keep it up!";
+            } else if (co2Emission >= 50 && co2Emission < 150) {
+                return "Your CO₂ emission is MEDIUM. Try reducing it!";
+            } else {
+                return "Your CO₂ emission is POOR. Take immediate action to reduce it!";
+            }
+        }
+
+        document.getElementById("emissionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let energyUsed = document.getElementById("energyUsed").value;
+            let co2Emission = energyUsed * 0.92; // 0.92 kg CO₂ per kWh (approximate value)
+            document.getElementById("result").innerText = `Your estimated CO₂ emission: ${co2Emission.toFixed(2)} kg`;
+            document.getElementById("evaluation").innerText = evaluateEmission(co2Emission);
+            
+            labels.push(`Entry ${labels.length + 1}`);
+            co2Data.push(co2Emission.toFixed(2));
+            
+            if (co2Chart) {
+                co2Chart.destroy();
+            }
+            createChart();
+        });
+
+        createChart();
+    </script>
+</body>
+</html>

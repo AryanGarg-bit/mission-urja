@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO₂ Emission Tips</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body {
+            background-color: darkgreen;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url("https://advertisingweek.com/wp-content/uploads/2023/01/carbon-neutral-and-esg-concepts-carbon-emission-clean-energy-globe-balancing-between-a-green.jpg_s1024x1024wisk20cUZjMAOHpGtWFVw7D3JgEpa2RWgw4gL0OQFSV2AkPD1c.jpg") no-repeat;
+  background-size: cover;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 400px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid black;
+            display: block;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: black;
+            background-color: yellowgreen;
+        }
+        table {
+           color: transparent;
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="navbar">
+          <div class="logo"><a href="#">Mission Urja</a></div>
+          <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Energy</a>
+              <ul class="dropdown-content">
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">CO2</a>
+              <ul class="dropdown-content">
+                <li><a href="CO2calculator.html">Calculator</a></li>
+                <li><a href="CO2tracker.html">Tracker</a></li>
+                <li><a href="CO2tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li class="dropdown">
+              <a href="#">Article</a>
+              <ul class="dropdown-content">
+                <li><a href="energyarticle.html"> Energy Article</a></li>
+                <li><a href="co2article.html">CO2 Article</a></li>
+              </ul>
+            </li>
+            <li><a href="registeration.html">Sign up</a></li>
+            <div class="cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+          </ul>
+          <div class="media-icons">
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    <div class="container">
+        <label for="co2">Enter Your CO₂ Emission (kg):</label>
+        <input type="number" id="co2" required>
+        <button onclick="showTips()">Get Tips</button>
+        <div id="tipsContainer"></div>
+    </div>
+
+    <script>
+        function showTips() {
+            const co2 = parseFloat(document.getElementById("co2").value);
+            const tipsContainer = document.getElementById("tipsContainer");
+            tipsContainer.innerHTML = "";
+            
+            const lowEmissionTips = [
+                "Use public transport more often.",
+                "Turn off unused lights.",
+                "Unplug devices when not in use.",
+                "Switch to LED bulbs.",
+                "Carpool whenever possible.",
+                "Use energy-efficient appliances.",
+                "Dry clothes in sunlight instead of dryers.",
+                "Reduce, reuse, recycle materials.",
+                "Eat more plant-based meals.",
+                "Grow plants and trees in your area."
+            ];
+
+            const highEmissionTips = [
+                "Reduce air travel as much as possible.",
+                "Use electric or hybrid vehicles.",
+                "Limit use of heating and air conditioning.",
+                "Opt for renewable energy sources.",
+                "Avoid single-use plastics.",
+                "Cut down on food waste.",
+                "Buy locally sourced products.",
+                "Invest in home insulation to save energy.",
+                "Use smart thermostats for efficiency.",
+                "Educate others about reducing CO₂ emissions."
+            ];
+            
+            let selectedTips = co2 < 150 ? lowEmissionTips : highEmissionTips;
+            
+            let table = `<table><tr><th>Tips</th></tr>`;
+            selectedTips.forEach(tip => {
+                table += `<tr><td>${tip}</td></tr>`;
+            });
+            table += `</table>`;
+            
+            tipsContainer.innerHTML = table;
+        }
+    </script>
+</body>
+</html>

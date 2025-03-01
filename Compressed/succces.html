@@ -1,0 +1,36 @@
+<!-- thankyou.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You - Mission Urja</title>
+    <style>
+        body {
+            background-color: darkblue;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .message-box {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 0px 10px gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-box">
+        <h2>Thank You
+        <p>You have successfully registered for the Mission Urja contest program.</p>
+        <p>We started this program to promote sustainable energy usage and awareness.</p>
+        <p>By <strong>StarTech</strong></p>
+    </div>
+    <script>
+        document.getElementById("userName").innerText = localStorage.getItem("userName");
+    </script>
+</body>
+</html>

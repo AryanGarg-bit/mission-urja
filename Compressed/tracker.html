@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js added -->
+    <link rel="stylesheet" href="style2.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background: url("kk.jpg") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Background overlay for better readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .tracker-container {
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent glass effect */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px); /* Smooth blur effect */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+        }
+
+        button {
+            background: lightblue;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #87CEFA;
+        }
+
+        canvas {
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo"><a href="#">Mission Urja</a></div>
+          <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Energy</a>
+              <ul class="dropdown-content">
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">CO2</a>
+              <ul class="dropdown-content">
+                <li><a href="CO2calculator.html">Calculator</a></li>
+                <li><a href="CO2tracker.html">Tracker</a></li>
+                <li><a href="CO2tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="leaderboard.html">Article</a></li>
+            <li><a href="registeration.html">Sign up</a></li>
+            <div class="cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+          </ul>
+          <div class="media-icons">
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    <div class="tracker-container">
+        <h2>Energy Tracker</h2>
+        <form id="energyForm">
+            <table>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="energy">Energy Consumption (kWh):</label></td>
+                    <td><input type="number" id="energy" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="button" onclick="trackEnergy()">Track Your Energy</button></td>
+                </tr>
+            </table>
+        </form>
+        <canvas id="energyChart" width="300" height="200"></canvas>
+        <div class="result" id="resultText"></div>
+    </div>
+
+    <script>
+        function trackEnergy() {
+            let energy = document.getElementById("energy").value;
+            let resultText = document.getElementById("resultText");
+            let ctx = document.getElementById("energyChart").getContext("2d");
+
+            if (!energy || energy < 0) {
+                alert("Please enter a valid energy consumption value.");
+                return;
+            }
+
+            let status = "";
+            let bgColor = "";
+
+            if (energy < 100) {
+                status = "✅ Your consumption is Good.";
+                bgColor = "green";
+            } else if (energy >= 100 && energy <= 300) {
+                status = "⚠️ Your consumption is Medium.";
+                bgColor = "yellow";
+            } else {
+                status = "❌ Your consumption is High. Consider saving energy!";
+                bgColor = "red";
+            }
+
+            resultText.innerHTML = status;
+
+            // Destroy previous chart to avoid overlapping issues
+            if (window.energyChartInstance) {
+                window.energyChartInstance.destroy();
+            }
+
+            window.energyChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Energy Consumption"],
+                    datasets: [{
+                        label: 'kWh',
+                        data: [energy],
+                        backgroundColor: bgColor
+                    }]
+                }
+            });
+        }
+    </script>
+</body>
+</html>

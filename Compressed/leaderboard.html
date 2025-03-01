@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="style2.css" />
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+    margin-top: 70px; /* Adjust as needed */
+}
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        th {
+            background-color: darkblue;
+            color: white;
+        }
+        .co2-column {
+            background-color: lightgreen;
+        }
+        .energy-column {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo"><a href="#">Mission Urja</a></div>
+          <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Energy</a>
+              <ul class="dropdown-content">
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">CO2</a>
+              <ul class="dropdown-content">
+                <li><a href="CO2calculator.html">Calculator</a></li>
+                <li><a href="CO2tracker.html">Tracker</a></li>
+                <li><a href="CO2tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li class="dropdown">
+              <a href="#">Article</a>
+              <ul class="dropdown-content">
+                <li><a href="energyarticle.html"> Energy Article</a></li>
+                <li><a href="co2article.html">CO2 Article</a></li>
+              </ul>
+            </li>
+            <li><a href="registeration.html">Sign up</a></li>
+            <div class="cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+          </ul>
+          <div class="media-icons">
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+      
+
+    <h1>CO2 & Energy Leaderboard</h1>
+    <table>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th class="co2-column">CO2 Emission (kg)</th>
+            <th class="energy-column">Energy Consumption (kWh)</th>
+        </tr>
+        <script>
+            const names = ["Govinda", "Madhava", "Vasudeva", "Shyam", "Gopal", "Mukunda", "Damodar", "Hari", "Krishna", "Keshava",
+                           "Achyuta", "Ananta", "Janardana", "Narayana", "Vishnu", "Raghunath", "Rama", "Balakrishna", "Jagannath", "Parthasarathi",
+                           "Radha-Krishna", "Brajendra", "Chaitanya", "Devakinandan", "Gauranga", "Gadadhara", "Muralimanohar", "Nandlala", "Padmanabha", "Purushottam",
+                           "Radhavallabh", "Ramachandra", "Sanatana", "Satyanarayana", "Sridhara", "Trivikram", "Upendra", "Varadaraja", "Venkatesh", "Vishwaroop",
+                           "Yadunandan", "Yashodanandan", "Bhaktavatsala", "Gopinath", "Kanhaiya", "Kesari", "Madana-Mohan", "Mukundalal", "Radhekrishna", "Sharangapani"];
+            
+            let data = [];
+            for (let i = 0; i < 50; i++) {
+                data.push({
+                    sno: i + 1, // Sequential S.No
+                    name: names[i],
+                    co2: (Math.random() * 500).toFixed(2),
+                    energy: (Math.random() * 1000).toFixed(2)
+                });
+            }
+            
+            data.forEach(entry => {
+                document.write(`<tr>
+                    <td>${entry.sno}</td>
+                    <td>${entry.name}</td>
+                    <td class="co2-column">${entry.co2}</td>
+                    <td class="energy-column">${entry.energy}</td>
+                </tr>`);
+            });
+        </script>
+    </table>
+</body>
+</html>

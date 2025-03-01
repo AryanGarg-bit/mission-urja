@@ -1,0 +1,192 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Urja</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #add8e6;
+            padding: 10px;
+            border-bottom: 2px solid black;
+            justify-content: space-between;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-left: 20px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            background-color: white;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            color: black;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            flex-direction: column;
+        }
+        #page1, #page3 {
+            background-color: darkblue;
+            color: white;
+        }
+        #page2, #c-partners {
+            background-color: lightblue;
+            color: black;
+        }
+        .divider {
+            width: 2px;
+            height: 80%;
+            background-color: black;
+        }
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 80%;
+            font-size: 20px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .image-row img {
+            width: 250px;
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #add8e6;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 200px;
+                border-left: 2px solid black;
+                padding: 10px;
+            }
+            .nav-links a {
+                display: block;
+                padding: 10px;
+                text-align: center;
+            }
+            .menu-icon {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector(".nav-links");
+            if (nav.style.display === "flex") {
+                nav.style.display = "none";
+            } else {
+                nav.style.display = "flex";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="header">
+        <img src="logo3.png" alt="Mission Urja Logo" class="logo">
+        <span id="menu-icon" class="menu-icon" onclick="toggleMenu()">☰</span>
+        <div class="nav-links">
+            <a href="#page1">Home</a>
+            <a href="#page2">Energy Department</a>
+            <a href="#page3">CO₂ Department</a>
+            <a href="#articles">Article</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#contact">Contact</a>
+            <a href="#registration">Registration</a>
+        </div>
+    </div>
+    <div id="page1" class="section">
+        <div class="content-container">
+            <img src="logo3.png" alt="Mission Urja Logo" style="margin-top: -50px;">
+            <h1>Why We Started Mission Urja</h1>
+            <p>
+                The increasing global energy crisis and climate change demand immediate attention. Our natural resources are depleting at an alarming rate, and carbon emissions continue to rise, worsening global warming. Mission Urja was founded to address these challenges and inspire individuals to contribute to a sustainable future. 
+                <br><br>
+                Our mission is to educate people about energy conservation and empower them with the tools to track and reduce their energy consumption. We provide valuable insights into sustainable practices, helping individuals and communities make informed decisions that positively impact the environment. 
+                <br><br>
+                Mission Urja also encourages collective action through our competitive leaderboard system, rewarding those who take significant steps towards energy efficiency. By raising awareness and offering tangible incentives, we aim to create a global movement toward a cleaner, greener planet. Our goal is to bridge the gap between awareness and action, ensuring that energy conservation becomes an integral part of daily life.
+                <br><br>
+                Join us in making a difference—one small step towards sustainability today can lead to a brighter and healthier tomorrow.
+            </p>
+        </div>
+    </div>
+
+    <div id="page2" class="section">
+        <div class="content-container">
+            <h1>What This Website Contains</h1>
+            <p><b>Energy Department:</b> Helps users save energy by providing actionable tips and tracking usage over time.</p>
+            <p><b>CO₂ Department:</b> Offers in-depth guidance on reducing carbon emissions and increasing efficiency through smart choices.</p>
+            <p><b>Leaderboard:</b> Displays the top energy savers, inspiring a healthy competition to adopt sustainable habits.</p>
+            <p><b>Articles:</b> Features expert-written blogs on renewable energy, climate change, and technological advancements in sustainability.</p>
+            <p><b>Contact Us:</b> Provides direct support for queries, feedback, and collaboration opportunities with our dedicated team.</p>
+        </div>
+    </div>
+
+    <div id="page3" class="section">
+        <div class="content-container">
+            <div class="image-row">
+                <img src="p2.png" alt="Image 1">
+                <img src="p1.png" alt="Image 2">
+            </div>
+            <h1>Contest and Prizes</h1>
+            <p>Mission Urja hosts an exciting competition every three months, encouraging users to reduce their energy consumption and adopt eco-friendly practices.</p>
+            <p>The top 10 users on the leaderboard will receive exclusive prizes.</p>
+            <ul>
+                <li>First Prize: ₹10,000 and a Certificate of Excellence</li>
+                <li>Second Prize: ₹7,500 and a Certificate of Achievement</li>
+                <li>Third Prize: ₹5,000 and a Certificate of Recognition</li>
+                <li>Fourth to Tenth Prize: ₹2,000 each and Certificates of Participation</li>
+            </ul>
+            <p>Join the challenge, save energy, and win amazing rewards!</p>
+        </div>
+    </div>
+
+    <div id="c-partners" class="section">
+        <h1>Our Corporate Partners</h1>
+        <p>We are proud to collaborate with leading organizations that support sustainability and energy conservation.</p>
+        <div class="image-row">
+            <img src="partner1.png" alt="Hack Titans">
+            <img src="partner2.png" alt="KitabDhundo">
+        </div>
+    </div>
+</body>
+</html>
+
+

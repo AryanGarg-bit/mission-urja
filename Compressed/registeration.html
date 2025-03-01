@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignUp</title>
+  <style>
+    /* Your existing styles here */
+    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Quicksand", sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #111;
+      background: url('image11.jpg') no-repeat center center fixed;
+      background-size: cover;
+      width: 100%;
+      overflow: hidden;
+    }
+    .ring {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ring i {
+      position: absolute;
+      inset: 0;
+      border: 2px solid #fff;
+      transition: 0.5s;
+    }
+    .ring i:nth-child(1) {
+      border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+      animation: animate 6s linear infinite;
+    }
+    .ring i:nth-child(2) {
+      border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+      animation: animate 4s linear infinite;
+    }
+    .ring i:nth-child(3) {
+      border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+      animation: animate2 10s linear infinite;}
+    .ring:hover i {
+      border: 6px solid var(--clr);
+      filter: drop-shadow(0 0 20px var(--clr));
+    }
+    @keyframes animate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes animate2 {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .SignUp {
+      position: absolute;
+      width: 300px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .SignUp h2 {
+      font-size: 2em;
+      color: #fff;
+    }
+    .SignUp .inputBx {
+      position: relative;
+      width: 100%;
+    }
+    .SignUp .inputBx input {
+      position: relative;
+      width: 100%;
+      padding: 12px 20px;
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 40px;
+      font-size: 1.2em;
+      color: #fff;
+      box-shadow: none;
+      outline: none;
+    }
+    .SignUp .inputBx input[type="submit"] {
+      width: 100%;
+      background: #0078ff;
+      background: linear-gradient(45deg, #ff357a, #fff172);
+      border: none;
+      cursor: pointer;
+    }
+    .SignUp .inputBx input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .SignUp .links {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 20px;
+    }
+    .SignUp .links a {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="ring">
+    <i style="--clr:#fff;"></i>
+    <i style="--clr:#fff;"></i>
+    <i style="--clr:#fff;"></i>
+    <div class="SignUp">
+      <h2>SignUp</h2>
+      <div class="inputBx">
+        <input type="text" placeholder="Full Name" id="fullName">
+      </div>
+      <div class="inputBx">
+        <input type="text" placeholder="E-Mail" id="email">
+      </div>
+      <div class="inputBx">
+        <input type="text" placeholder="Phone no." id="phone">
+      </div>
+      <div class="inputBx">
+        <input type="password" placeholder="Password" id="password">
+      </div>
+      <div class="inputBx">
+        <input type="submit" value="Sign Up" id="register">
+      </div>
+      <div class="links">
+        <a href="Login.html">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBy2ka0-vgvann5DYP1BwUgusYWN1VIrIQ",
+      authDomain: "mission-urja-a0560.firebaseapp.com",
+      projectId: "mission-urja-a0560",
+      storageBucket: "mission-urja-a0560.firebasestorage.app",
+      messagingSenderId: "469939971054",
+      appId: "1:469939971054:web:015b0a97c2732225b1a4ff",
+      measurementId: "G-Q52PDQ2CBZ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
+
+    document.getElementById("register").addEventListener("click", function() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          alert("Registration successful!");
+          
+          // Store user info and redirect to success page
+          localStorage.setItem("userName", document.getElementById('fullName').value);
+          window.location.href = "success.html";
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          alert(errorMessage);
+        });
+    });
+  </script>
+</body>
+</html>

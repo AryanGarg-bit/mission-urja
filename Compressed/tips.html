@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Tips</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('kk.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Background overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjusted for better readability */
+            z-index: -1;
+        }
+
+        .tips-container {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    width: 50%;
+    margin: 120px auto 0 auto; /* Increased margin-top to move it lower */
+    text-align: center;
+    backdrop-filter: blur(10px); /* Blurring effect */
+}
+
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.2); /* Transparent table */
+            color: white;
+            backdrop-filter: blur(10px); /* Blur effect */
+        }
+
+        th, td {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(0, 100, 0, 0.7);
+            color: white;
+        }
+
+        button {
+            background: lightblue;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #87CEFA;
+        }
+
+        input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo"><a href="#">Mission Urja</a></div>
+          <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Energy</a>
+              <ul class="dropdown-content">
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="tracker.html">Tracker</a></li>
+                <li><a href="tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">CO2</a>
+              <ul class="dropdown-content">
+                <li><a href="CO2calculator.html">Calculator</a></li>
+                <li><a href="CO2tracker.html">Tracker</a></li>
+                <li><a href="CO2tips.html">Tips</a></li>
+              </ul>
+            </li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li class="dropdown">
+                <a href="#">Article</a>
+                <ul class="dropdown-content">
+                  <li><a href="energyarticle.html"> Energy Article</a></li>
+                  <li><a href="co2article.html">CO2 Article</a></li>
+                </ul>
+              </li>
+            <li><a href="registeration.html">Sign up</a></li>
+            <div class="cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+          </ul>
+          <div class="media-icons">
+            <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    <div class="tips-container">
+        <h1>Energy Consumption Tips</h1>
+        <form id="energyForm">
+            <label for="name">Enter Your Name:</label>
+            <input type="text" id="name" required>
+            <br><br>
+            <label for="energy">Enter Energy Consumption (kWh):</label>
+            <input type="number" id="energy" required>
+            <br><br>
+            <button type="button" onclick="showTips()">Get Tips</button>
+        </form>
+        
+        <div id="tipsSection" style="display:none;">
+            <h2>Energy Saving Tips</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tip</th>
+                    </tr>
+                </thead>
+                <tbody id="tipsTable"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function showTips() {
+            const energy = document.getElementById("energy").value;
+            const tipsTable = document.getElementById("tipsTable");
+            const tipsSection = document.getElementById("tipsSection");
+            tipsTable.innerHTML = "";
+            
+            let tips;
+            if (energy < 600) {
+                tips = [
+                    "Use LED bulbs instead of incandescent ones.",
+                    "Turn off lights when not in use.",
+                    "Unplug appliances when not in use.",
+                    "Use a power strip to easily disconnect multiple devices.",
+                    "Wash clothes in cold water to save heating energy.",
+                    "Use energy-efficient appliances.",
+                    "Air-dry clothes instead of using a dryer.",
+                    "Keep your refrigerator coils clean for efficiency.",
+                    "Use natural light during the daytime.",
+                    "Seal windows and doors to prevent energy loss."
+                ];
+            } else {
+                tips = [
+                    "Invest in solar panels to reduce dependency on the grid.",
+                    "Upgrade to high-efficiency HVAC systems.",
+                    "Install smart thermostats to optimize energy usage.",
+                    "Improve home insulation to reduce heating and cooling costs.",
+                    "Use double-glazed windows for better insulation.",
+                    "Reduce water heater temperature to save on heating costs.",
+                    "Opt for energy-efficient kitchen appliances.",
+                    "Limit air conditioning usage and rely on fans when possible.",
+                    "Schedule an energy audit to identify areas for improvement.",
+                    "Use renewable energy sources where possible."
+                ];
+            }
+            
+            tips.forEach((tip, index) => {
+                let row = `<tr><td>${index + 1}</td><td>${tip}</td></tr>`;
+                tipsTable.innerHTML += row;
+            });
+            
+            tipsSection.style.display = "block";
+        }
+    </script>
+</body>
+</html>

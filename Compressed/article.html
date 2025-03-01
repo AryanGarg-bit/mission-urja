@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy & CO2 Articles</title>
+    <style>
+        body {
+            animation: changeBg 2s infinite alternate;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        @keyframes changeBg {
+            0% { background-color: darkgreen; }
+            100% { background-color: darkblue; }
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        table {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .energy-btn {
+            background-color: lightblue;
+        }
+        .co2-btn {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td><button class="energy-btn" onclick="location.href='energyarticle.html'">Energy Articles</button></td>
+            </tr>
+            <tr>
+                <td><button class="co2-btn" onclick="location.href='co2article.html'">CO2 Emission Articles</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

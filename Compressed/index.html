@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Mission Urja</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo3.png">
+  <!-- Fontawesome CDN Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Chatbot icon style */
+    #chatbot-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #2c3e50;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+    }
+
+    /* Chatbot container styles */
+    #myChatbot {
+      position: fixed;
+      bottom: 70px; /* Adjusted to make space for the icon */
+      right: 20px;
+      z-index: 9999;
+      display: none; /* Initially hidden */
+    }
+
+    .chatbot {
+      width: 300px;
+      height: 400px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chatbot-header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .chatbot-messages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+      height: 300px;
+    }
+
+    .chatbot-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .chatbot-input input {
+      flex-grow: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 0 0 0 10px;
+      outline: none;
+    }
+
+    .chatbot-input button {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 0 0 10px 0;
+    }
+
+    .chatbot-input button:hover {
+      background-color: #34495e;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Move to up button -->
+  <div class="scroll-button">
+    <a href="#home"><i class="fas fa-arrow-up"></i></a>
+  </div>
+  <!-- navgaition menu -->
+  <nav>
+    <div class="navbar">
+      <div class="logo"><a href="#">Mission Urja</a></div>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Energy</a>
+          <ul class="dropdown-content">
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="tracker.html">Tracker</a></li>
+            <li><a href="tips.html">Tips</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">CO2</a>
+          <ul class="dropdown-content">
+            <li><a href="CO2calculator.html">Calculator</a></li>
+            <li><a href="CO2tracker.html">Tracker</a></li>
+            <li><a href="CO2tips.html">Tips</a></li>
+          </ul>
+        </li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="article.html">Article</a></li>
+
+        <li class="dropdown">
+          <a href="#">Profile</a>
+          <ul class="dropdown-content">
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="registeration.html">Sign up</a></li>
+            <li><a href="upload.html">Old electricity bills</a></li>
+          </ul>
+        </li>
+        <div class="cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+      </ul>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Home Section Start -->
+  <section class="home" id="home">
+    <div class="home-content">
+      <div class="text">
+        <div class="text-one">Hello</div>
+        <div class="text-two">Welcome </div>
+        <div class="text-three">to our project website</div>
+        <div class="text-four">Mission Urja</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section Start -->
+  <section class="about" id="about">
+    <div class="content">
+      <div class="title"><span>About Us</span></div>
+      <div class="about-details">
+        <div class="left">
+          <img src="bulb.png" alt="image" />
+        </div>
+        <div class="right">
+          <div class="topic">About Mission Urja</div>
+          <p>
+            The increasing global energy crisis and climate change demand immediate attention. Our natural resources are depleting at an alarming rate, and carbon emissions continue to rise, worsening global warming. Mission Urja was founded to address these challenges and inspire individuals to contribute to a sustainable future.            Our mission is to educate people about energy conservation and empower them with the tools to track and reduce their energy consumption. We provide valuable insights into sustainable practices, helping individuals and communities make informed decisions that positively impact the environment.            Join us in making a difference—one small step towards sustainability today can lead to a brighter and healthier tomorrow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Chatbot Icon -->
+  <div id="chatbot-icon" onclick="toggleChatbot()">
+    <i class="fas fa-comment-alt"></i> <!-- Chat bubble icon -->
+  </div>
+
+  <!-- Chatbot Content -->
+  <div id="myChatbot">
+    <div class="chatbot">
+      <div class="chatbot-header">Mission Urja Chatbot</div>
+      <div class="chatbot-messages" id="chatbot-messages"></div>
+      <div class="chatbot-input">
+        <input type="text" id="chatbot-input" placeholder="Ask me anything...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle the visibility of the chatbot
+    function toggleChatbot() {
+      const chatbot = document.getElementById('myChatbot');
+      chatbot.style.display = chatbot.style.display === 'none' || chatbot.style.display === '' ? 'block' : 'none';
+    }
+
+    // Function to handle message sending
+    function sendMessage() {
+      const inputField = document.getElementById('chatbot-input');
+      const messageContainer = document.getElementById('chatbot-messages');
+      const userMessage = inputField.value.trim().toLowerCase();
+      if (userMessage === '') return;
+      
+      const responses = {
+        "hello": "Hello! How can I guide you?",
+        "who made you": "Startech",
+        "what is your work": "To guide you",
+        "what is the energy department": "The Energy Department helps you save energy through AI-powered monitoring and smart scheduling.",
+        "how can i save energy": "You can save energy by using AI-powered recommendations and tracking your electricity consumption.",
+        "how does the energy department work": "It tracks your power consumption, provides tips, and helps reduce energy waste.",
+        "why is saving energy important": "Saving energy reduces electricity bills and minimizes carbon emissions.",
+        "what are some energy-saving tips": "Turn off unused appliances, use LED bulbs, and optimize energy consumption.",
+        "how does ai-powered energy monitoring work": "AI analyzes your energy usage patterns and suggests optimizations.",
+        "what is smart scheduling for energy saving": "It schedules high-energy tasks during off-peak hours for efficiency.",
+        "how can i track my electricity usage": "Mission Urja provides a tracking tool for monitoring your energy consumption.",
+        "does mission urja provide real-time energy tracking": "Yes, we provide tools to monitor real-time energy consumption.",
+        "what is the co2 department": "The CO₂ Department helps you track and reduce your carbon footprint.",
+        "how does the co2 department work": "It calculates CO₂ emissions based on energy usage and suggests ways to lower them.",
+        "why is tracking co2 emissions important": "Tracking CO₂ helps in reducing environmental impact and promoting sustainability.",
+        "how can i reduce my carbon footprint": "Use renewable energy, reduce waste, and optimize electricity usage.",
+        "what are some ways to lower co2 emissions": "Switch to energy-efficient appliances, use public transport, and conserve energy.",
+        "how does the co2 tracker work": "It measures your energy consumption and estimates your carbon emissions.",
+        "does mission urja provide real-time co2 tracking": "Yes, you can track your CO₂ emissions in real-time.",
+        "what is the carbon offset suggestion feature": "It suggests ways to compensate for your carbon emissions.",
+        "how does the leaderboard encourage co2 reduction": "Users who reduce emissions the most earn top leaderboard positions.",
+        "what impact does mission urja have on the environment": "Mission Urja helps users cut emissions and promote sustainability.",
+        "what is the mission urja leaderboard": "The leaderboard tracks top energy savers and offers rewards every 3 months.",
+        "how does the leaderboard work": "Users compete by saving energy and tracking their progress.",
+        "how can i join the leaderboard competition": "Simply use Mission Urja's tracking tools to start saving energy.",
+        "what are the rewards for the leaderboard winners": "Top 10 users receive cash prizes and recognition certificates.",
+        "how is energy-saving performance calculated on the leaderboard": "Energy savings are analyzed and ranked based on user contributions.",
+        "when are the leaderboard rankings updated": "Leaderboard rankings are updated every 3 months.",
+        "who are the past winners of the leaderboard": "You can check the leaderboard page for past winners.",
+        "can i check my leaderboard rank": "Yes, visit the leaderboard page to check your rank.",
+        "does the leaderboard reset after every competition": "Yes, rankings reset after each 3-month cycle.",
+        "how does the leaderboard encourage energy saving": "It motivates users by offering rewards and tracking progress.",
+        "how can i register": "Sure! Click <a href='registeration.html'>here</a> to go to the registration page.",
+      };
+
+      function findBestMatch(userMessage, responses) {
+        let bestMatch = null;
+        let highestMatchCount = 0;
+        
+        for (let key in responses) {
+          let matchCount = 0;
+          let keywords = key.split(" ");
+          for (let word of keywords) {
+            if (userMessage.includes(word)) {
+              matchCount++;
+            }
+          }
+          if (matchCount > highestMatchCount) {
+            highestMatchCount = matchCount;
+            bestMatch = key;
+          }
+        }
+        return bestMatch;
+      }
+      
+      let bestMatch = findBestMatch(userMessage, responses);
+      let botResponse = bestMatch ? responses[bestMatch] : "I don't know, please go to <a href='contact.html'>Contact Us</a>.";
+      
+      const userBubble = document.createElement('div');
+      userBubble.textContent = "You: " + inputField.value;
+      messageContainer.appendChild(userBubble);
+      
+      setTimeout(() => {
+        const botBubble = document.createElement('div');
+        botBubble.innerHTML = "Bot: " + botResponse;
+        messageContainer.appendChild(botBubble);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }, 1000);
+      
+      inputField.value = '';
+    }
+    </script>
+    <section class="What do we offer" id="What do we offer">
+  <div class="content">
+    <div class="title"><span>What do we offer</span></div>
+    <div class="skills-details">
+      <div class="text">
+        <div class="topic">Efficient Today, Sustainable Tomorrow</div>
+        <p><b>Energy Department:</b> Helps users save energy by providing actionable tips and tracking usage over time.</p>
+        <p><b>CO₂ Department:</b> Offers in-depth guidance on reducing carbon emissions and increasing efficiency through smart choices.</p>
+        <p><b>Leaderboard:</b> Displays the top energy savers, inspiring a healthy competition to adopt sustainable habits.</p>
+        <p><b>Articles:</b> Features expert-written blogs on renewable energy, climate change, and technological advancements in sustainability.</p>
+        <p><b>Contact Us:</b> Provides direct support for queries, feedback, and collaboration opportunities with our dedicated team.</p>
+      </div>
+    </div>
+  </div> 
+</section>
+
+<section class="services" id="services">
+  <div class="content">
+    <div class="title"><span>Contest and Prizes</span></div>
+    <div class="boxes">
+      <div class="box">
+        <div class="icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="topic">About Contest</div>
+        <p>Mission Urja hosts an exciting competition every three months, encouraging users to reduce their 
+          energy consumption and adopt eco-friendly practices.</p>
+      </div>
+      <div class="box">
+        <div class="icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="topic">First Prize</div>
+        <p>Amazon Voucher worth ₹250 and free membership of mission urja for 1 month</p>
+      </div>
+      <div class="box">
+        <div class="icon">
+          <i class="fas fa-award"></i>
+        </div>
+₹        <div class="topic">Second Prize</div>
+        <p>Amazon Voucher worth ₹250 and free membership of mission urja for 1 month</p>
+      </div>
+      <div class="box">
+        <div class="icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <div class="topic">Third Prize</div>
+        <p>Free membership of mission urja for 1 month</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="content">
+    <div class="title"><span>Contact Us</span></div>
+    <div class="text">
+      <div class="topic">feedback</div>
+      <p>We are open to take any type of feedback from your side.</p>
+      <div class="button">
+        <a href="contact.html"><button>Let's Chat</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="text">
+    <span>Created By <a href="#">Star Tech</a> | &#169; 2025 All Rights Reserved</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body> 
+</html>
